@@ -1,4 +1,4 @@
-package me.iron.mod.MYMODHERE.manager;
+package me.iron.mod.StarChat.manager;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import javax.annotation.Nullable;
 
 import api.DebugFile;
-import me.iron.mod.MYMODHERE.ModMain;
 import me.iron.mod.MYMODHERE.utils.DataUtils;
-import me.iron.mod.MYMODHERE.utils.DateUtils;
+import me.iron.mod.StarChat.ModMain;
+import me.iron.mod.StarChat.utils.DateUtils;
 
 /**
  * <Description>

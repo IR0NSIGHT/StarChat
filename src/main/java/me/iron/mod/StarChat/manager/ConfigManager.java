@@ -1,7 +1,7 @@
-package me.iron.mod.MYMODHERE.manager;
+package me.iron.mod.StarChat.manager;
 
 import api.mod.config.FileConfiguration;
-import me.iron.mod.MYMODHERE.ModMain;
+import me.iron.mod.StarChat.ModMain;
 
 /**
  * <Description>

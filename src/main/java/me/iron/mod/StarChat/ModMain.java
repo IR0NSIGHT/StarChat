@@ -1,14 +1,8 @@
-package me.iron.mod.MYMODHERE;
+package me.iron.mod.StarChat;
 
 
-import org.schema.schine.resource.ResourceLoader;
-
-import api.config.BlockConfig;
 import api.mod.StarMod;
-import me.iron.mod.MYMODHERE.element.ElementManager;
-import me.iron.mod.MYMODHERE.element.items.ExampleItem;
-import me.iron.mod.MYMODHERE.manager.LogManager;
-import me.iron.mod.MYMODHERE.manager.ResourceManager;
+import me.iron.mod.StarChat.manager.LogManager;
 
 /**
  * StarMade mod starting template.
@@ -32,18 +26,6 @@ public class ModMain extends StarMod {
 		LogManager.initialize();
 		registerListeners();
 		registerPackets();
-	}
-
-	@Override
-	public void onResourceLoad(ResourceLoader loader) {
-		ResourceManager.loadResources();
-	}
-
-	@Override
-	public void onBlockConfigLoad(BlockConfig config) {
-		ElementManager.addItem(new ExampleItem());
-
-		ElementManager.initialize();
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package me.iron.mod.MYMODHERE.utils;
+package me.iron.mod.StarChat.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +26,6 @@ public class DateUtils {
 	}
 
 	public static String getTimeFormatted() {
-		return getTimeFormatted("MM/dd/yyyy '-' hh:mm:ss z");
+		return getTimeFormatted("dd/mm/yyyy '-' hh:mm:ss z");
 	}
 }

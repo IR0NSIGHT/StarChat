@@ -2,8 +2,8 @@ package me.iron.mod.MYMODHERE.utils;
 
 import api.common.GameClient;
 import api.common.GameCommon;
-import me.iron.mod.MYMODHERE.ModMain;
-import me.iron.mod.MYMODHERE.manager.LogManager;
+import me.iron.mod.StarChat.ModMain;
+import me.iron.mod.StarChat.manager.LogManager;
 
 /**
  * <Description>
