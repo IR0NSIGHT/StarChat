@@ -1,6 +1,8 @@
 package me.iron.mod.StarChat.manager;
 
-import api.mod.config.FileConfiguration;
+
+import api.utils.simpleconfig.SimpleConfigContainer;
+import api.utils.simpleconfig.SimpleConfigString;
 import me.iron.mod.StarChat.ModMain;
 
 /**
@@ -10,19 +12,26 @@ import me.iron.mod.StarChat.ModMain;
  * @version 1.0 - [03/05/2022]
  */
 public class ConfigManager {
+	private String webHookUrl;
 
-	private static FileConfiguration mainConfig;
-	private static final String[] defaultMainConfig = {
-			"debug-mode: false",
-			"max-world-logs: 5"
-	};
-
-	public static void initialize(ModMain instance) {
-		mainConfig = instance.getConfig("config");
-		mainConfig.saveDefault(defaultMainConfig);
+	public ConfigManager() {
+		readConfig();
 	}
 
-	public static FileConfiguration getMainConfig() {
-		return mainConfig;
+	void readConfig() {
+		SimpleConfigContainer configContainer = new SimpleConfigContainer(
+			ModMain.getInstance(),
+			"properties",
+			true
+		);
+		SimpleConfigString hookUrl = new SimpleConfigString(configContainer, "discord_webhook_url", "", "the url to your discord webhook.");
+		configContainer.readWriteFields();
+		webHookUrl = hookUrl.getValue();
+
+	}
+
+
+	public String getWebHookUrl() {
+		return webHookUrl;
 	}
 }

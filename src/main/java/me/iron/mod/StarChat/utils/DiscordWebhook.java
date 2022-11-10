@@ -3,15 +3,13 @@ package me.iron.mod.StarChat.utils;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import org.json.JSONObject;
 
 /**
  * Class used to execute Discord Webhooks with low effort
@@ -155,6 +153,8 @@ public class DiscordWebhook {
         connection.getInputStream().close(); //I'm not sure why but it doesn't work without getting the InputStream
         connection.disconnect();
     }
+
+
 
     public static class EmbedObject {
         private String title;
@@ -339,54 +339,4 @@ public class DiscordWebhook {
             }
         }
     }
-
-    private class JSONObject {
-
-        private final HashMap<String, Object> map = new HashMap<>();
-
-        void put(String key, Object value) {
-            if (value != null) {
-                map.put(key, value);
-            }
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder builder = new StringBuilder();
-            Set<Map.Entry<String, Object>> entrySet = map.entrySet();
-            builder.append("{");
-
-            int i = 0;
-            for (Map.Entry<String, Object> entry : entrySet) {
-                Object val = entry.getValue();
-                builder.append(quote(entry.getKey())).append(":");
-
-                if (val instanceof String) {
-                    builder.append(quote(String.valueOf(val)));
-                } else if (val instanceof Integer) {
-                    builder.append(Integer.valueOf(String.valueOf(val)));
-                } else if (val instanceof Boolean) {
-                    builder.append(val);
-                } else if (val instanceof JSONObject) {
-                    builder.append(val.toString());
-                } else if (val.getClass().isArray()) {
-                    builder.append("[");
-                    int len = Array.getLength(val);
-                    for (int j = 0; j < len; j++) {
-                        builder.append(Array.get(val, j).toString()).append(j != len - 1 ? "," : "");
-                    }
-                    builder.append("]");
-                }
-
-                builder.append(++i == entrySet.size() ? "}" : ",");
-            }
-
-            return builder.toString();
-        }
-
-        private String quote(String string) {
-            return "\"" + string + "\"";
-        }
-    }
-
 }
