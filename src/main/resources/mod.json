@@ -1,12 +1,12 @@
 {
-  "name": "ModTemplate",
-  "author": "TheDerpGamer",
-  "description": "Template for making StarMade mods.",
-  "version": "1.0.0",
+  "name": "StarChat",
+  "author": "IR0NSIGHT",
+  "description": "Broadcast in-game chats to discord.",
+  "version": "0.0.1",
   "starmade_version": "0.203.111",
   "client_mod": false,
-  "server_mod": false,
-  "main_class": "thederpgamer.modtemplate.ModTemplate",
+  "server_mod": true,
+  "main_class": "me.iron.mod.StarChat.ModMain",
   "smd_resource_id": 9999,
   "dependencies": [
     -1

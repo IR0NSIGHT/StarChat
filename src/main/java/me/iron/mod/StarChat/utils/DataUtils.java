@@ -1,9 +1,9 @@
-package me.iron.mod.MYMODHERE.utils;
+package me.iron.mod.StarChat.utils;
 
+import api.DebugFile;
 import api.common.GameClient;
 import api.common.GameCommon;
 import me.iron.mod.StarChat.ModMain;
-import me.iron.mod.StarChat.manager.LogManager;
 
 /**
  * <Description>
@@ -22,7 +22,7 @@ public class DataUtils {
 		if(!universeName.contains(":")) return getResourcesPath() + "/data/" + universeName;
 		else {
 			try {
-				LogManager.logWarning("Client " + GameClient.getClientPlayerState().getName() + " attempted to illegally access server data.", null);
+				DebugFile.log("Client " + GameClient.getClientPlayerState().getName() + " attempted to illegally access server data.", null);
 			} catch(Exception ignored) { }
 			return null;
 		}
