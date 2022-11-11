@@ -2,9 +2,11 @@ package me.iron.mod.StarChat;
 
 
 import api.listener.events.controller.ServerInitializeEvent;
+import api.mod.StarLoader;
 import api.mod.StarMod;
 import me.iron.mod.StarChat.manager.ConfigManager;
 import me.iron.mod.StarChat.manager.PlayerChatManager;
+import me.iron.mod.StarChat.utils.DebugCommand;
 
 /**
  * StarMade mod starting template.
@@ -25,6 +27,7 @@ public class ModMain extends StarMod {
 	public void onEnable() {
 		instance = this;
 		configManager = new ConfigManager();
+		StarLoader.registerCommand(new DebugCommand());
 	}
 
 	PlayerChatManager chatManager;
@@ -33,7 +36,9 @@ public class ModMain extends StarMod {
 		return configManager;
 	}
 
-
+	public PlayerChatManager getChatManager() {
+		return chatManager;
+	}
 
 	ConfigManager configManager;
 	@Override
