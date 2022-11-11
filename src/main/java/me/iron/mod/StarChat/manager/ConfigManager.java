@@ -5,12 +5,6 @@ import api.utils.simpleconfig.SimpleConfigContainer;
 import api.utils.simpleconfig.SimpleConfigString;
 import me.iron.mod.StarChat.ModMain;
 
-/**
- * <Description>
- *
- * @author TheDerpGamer
- * @version 1.0 - [03/05/2022]
- */
 public class ConfigManager {
 	private String webHookUrl;
 
@@ -24,12 +18,12 @@ public class ConfigManager {
 			"properties",
 			true
 		);
-		SimpleConfigString hookUrl = new SimpleConfigString(configContainer, "discord_webhook_url", "", "the url to your discord webhook.");
-		configContainer.readWriteFields();
-		webHookUrl = hookUrl.getValue();
-
+		SimpleConfigString hookUrl = new SimpleConfigString(
+				configContainer,
+				"discord_webhook_url", "discord.com/api/webhooks/1234/5678-owo",
+				"the url to your discord webhook. please remove https://");
+		webHookUrl = "https://"+hookUrl.getValue();
 	}
-
 
 	public String getWebHookUrl() {
 		return webHookUrl;

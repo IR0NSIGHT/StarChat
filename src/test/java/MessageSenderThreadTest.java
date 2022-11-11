@@ -1,11 +1,14 @@
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.junit.Test;
 import org.schema.game.network.objects.ChatMessage;
 
+import me.iron.mod.StarChat.manager.MessageSenderThread;
 
-public class MessageSenderThread {
+public class MessageSenderThreadTest {
     @Test (expected = IllegalArgumentException.class)
     public void emptyChatMessage() throws  IOException {
         me.iron.mod.StarChat.manager.MessageSenderThread myThread = new me.iron.mod.StarChat.manager.MessageSenderThread("");
@@ -18,6 +21,7 @@ public class MessageSenderThread {
         ChatMessage m = new ChatMessage();
         m.sender = "test";
         m.text = "test message";
+        myThread.setDryRun(true);
         myThread.sendDiscordMessage(m);
     }
 
@@ -28,17 +32,32 @@ public class MessageSenderThread {
         ChatMessage m = new ChatMessage();
         m.sender = "test";
         m.text = "test message";
+        myThread.setDryRun(true);
         myThread.sendDiscordMessage(m);
     }
 
     @Test
-    public void invalidJsonString() throws IOException {
-        String testHook = "https://discord.com/api/webhooks/1039982257491943528/6PvtA-ub8k7TkgT1lpSeb_OhZmZDecVcjONePw7XXMPay6P6b7LOgreQrTYAwE7fnIn7";
-        //TODO throw error with url is not actually a discord thing
-        me.iron.mod.StarChat.manager.MessageSenderThread myThread = new me.iron.mod.StarChat.manager.MessageSenderThread(testHook);
-        ChatMessage m = new ChatMessage();
-        m.sender = "test";
-        m.text = "\"test\n\t:,   \"\\\\#} message\"";
-        myThread.sendDiscordMessage(m);
+    public void queueConsumption() throws InterruptedException {
+        MessageSenderThread myThread = new MessageSenderThread("owoboi.9000");
+        myThread.setDryRun(true);
+        //fill queue while thread is idle
+        for (int i = 0; i< 10; i++) {
+            ChatMessage m = new ChatMessage();
+            m.text = "owo the " + i;
+            m.sender = "owoBoi900"+i;
+            try {
+                myThread.messageQueue.put(m);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        assertEquals(10, myThread.messageQueue.size());
+
+        //start thread, automatically starts consuming queue, give it time to consume all
+        myThread.start();
+        Thread.sleep(50);
+        myThread.terminate();
+        Thread.sleep(50);
+        assertEquals(0, myThread.messageQueue.size());
     }
 }

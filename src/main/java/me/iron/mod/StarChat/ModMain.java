@@ -24,6 +24,7 @@ public class ModMain extends StarMod {
 	@Override
 	public void onEnable() {
 		instance = this;
+		configManager = new ConfigManager();
 	}
 
 	PlayerChatManager chatManager;
@@ -32,11 +33,12 @@ public class ModMain extends StarMod {
 		return configManager;
 	}
 
+
+
 	ConfigManager configManager;
 	@Override
 	public void onServerCreated(ServerInitializeEvent event) {
 		super.onServerCreated(event);
-		configManager = new ConfigManager();
 		chatManager = new PlayerChatManager(getConfigManager().getWebHookUrl());
 		chatManager.registerListeners();
 	}
