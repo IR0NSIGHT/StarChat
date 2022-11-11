@@ -15,16 +15,6 @@ public class MessageSenderThreadTest {
         myThread.sendDiscordMessage(new ChatMessage());
     }
 
-    @Test (expected = MalformedURLException.class)
-    public void malformedUrlDiscordHook() throws IOException {
-        me.iron.mod.StarChat.manager.MessageSenderThread myThread = new me.iron.mod.StarChat.manager.MessageSenderThread("");
-        ChatMessage m = new ChatMessage();
-        m.sender = "test";
-        m.text = "test message";
-        myThread.setDryRun(true);
-        myThread.sendDiscordMessage(m);
-    }
-
     @Test
     public void deadUrlDiscordHook() throws IOException {
         //TODO throw error with url is not actually a discord thing

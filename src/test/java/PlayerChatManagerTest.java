@@ -1,17 +1,15 @@
-import api.listener.events.player.PlayerChatEvent;
-import org.junit.Test;
-
-import me.iron.mod.StarChat.manager.PlayerChatManager;
-import org.schema.game.common.data.player.PlayerState;
-import org.schema.game.network.objects.ChatMessage;
-import org.schema.game.server.data.GameServerState;
+import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+import org.schema.game.network.objects.ChatMessage;
+
+import api.listener.events.player.PlayerChatEvent;
+import me.iron.mod.StarChat.manager.PlayerChatManager;
 
 public class PlayerChatManagerTest {
-    //@Test (expected = IllegalArgumentException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void rejectInvalidUrl() {
         PlayerChatManager manager = new PlayerChatManager("imNotAValidUrl.com");
     }
